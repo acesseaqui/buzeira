@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomperon Festival - Ticket Urbano</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6c2bd9;
+            --secondary: #c53dff;
+            --accent: #00e5ff;
+            --dark: #0f011f;
+            --light: #f5f5f7;
+            --success: #00d95f;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --neon-glow: 0 0 10px rgba(108, 43, 217, 0.7), 0 0 20px rgba(108, 43, 217, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(15, 1, 31, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(108, 43, 217, 0.3);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: 800;
+            color: white;
+        }
+        
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-left: 5px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            margin-right: 10px;
+            font-size: 28px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 1, 31, 0.8), rgba(15, 1, 31, 0.9)), url('https://d106p58duwuiz5.cloudfront.net/event/cover/730ba97bbac373bdd511b59166c3bcf7.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(to right, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: var(--neon-glow);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            margin: 0 10px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 90px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(108, 43, 217, 0.3);
+            box-shadow: var(--neon-glow);
+        }
+        
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent);
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 16px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-top: 20px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(108, 43, 217, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(108, 43, 217, 0.6);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark), #160630);
+            position: relative;
+        }
+        
+        .about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(108, 43, 217, 0.3);
+            position: relative;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient);
+            z-index: -1;
+            border-radius: 20px;
+            opacity: 0.5;
+            filter: blur(20px);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Lineup Section */
+        .lineup {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #160630, var(--dark));
+            position: relative;
+        }
+        
+        .lineup::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        
+        .artists {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .artist-card {
+            background: rgba(15, 1, 31, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 250px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(108, 43, 217, 0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .artist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(108, 43, 217, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .artist-image {
+            height: 250px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artist-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+        
+        .artist-info {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .artist-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--accent);
+        }
+        
+        /* Tickets Section */
+        .tickets {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--dark), #160630);
+            position: relative;
+        }
+        
+        .tickets::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        
+        .ticket-cards {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ticket-card {
+            background: rgba(15, 1, 31, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            width: 320px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(108, 43, 217, 0.3);
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 43, 217, 0.4);
+            border-color: var(--primary);
+        }
+        
+        .ticket-header {
+            background: var(--gradient);
+            color: white;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ticket-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+        
+        .ticket-type {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .ticket-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .ticket-price small {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .ticket-body {
+            padding: 25px;
+        }
+        
+        .ticket-info {
+            background: rgba(108, 43, 217, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(108, 43, 217, 0.2);
+        }
+        
+        .ticket-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ticket-info-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ticket-info-label {
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        
+        .ticket-info-value {
+            font-weight: 600;
+            color: var(--accent);
+        }
+        
+        .ticket-features {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .ticket-features li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .ticket-features li i {
+            color: var(--success);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .ticket-button {
+            text-align: center;
+            margin-top: 25px;
+        }
+        
+        /* Location Section */
+        .location {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, #160630, var(--dark));
+            position: relative;
+        }
+        
+        .location::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        
+        .map-container {
+            height: 400px;
+            background: rgba(15, 1, 31, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(108, 43, 217, 0.3);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .map-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .address {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .address p {
+            margin-bottom: 10px;
+        }
+        
+        .address strong {
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        footer {
+            background: rgba(15, 1, 31, 0.95);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(108, 43, 217, 0.3);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 300px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #dfe6e9;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+            opacity: 0.8;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+            opacity: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(108, 43, 217, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--gradient);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(108, 43, 217, 0.3);
+            position: relative;
+            z-index: 2;
+            opacity: 0.7;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 5px 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                margin: 5px;
+                min-width: 70px;
+            }
+            
+            .countdown-number {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 229, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 229, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-ticket-alt"></i>Ticket <span>Urbano</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#lineup">Line-up</a></li>
+                        <li><a href="#ingressos">Ingressos</a></li>
+                        <li><a href="#localizacao">Localização</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pomperon Festival</h1>
+                <p>Uma experiência tecnológica musical inesquecível</p>
+                <p>Organizado por <strong>Buzeira</strong></p>
+                
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Dias</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Horas</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutos</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Segundos</div>
+                    </div>
+                </div>
+                
+                <a href="#ingressos" class="btn pulse">Comprar Ingressos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre o Evento</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>O <strong>Pomperon Festival</strong> chega à sua 5ª edição com uma experiência tecnológica única para os amantes da música eletrônica. Prepare-se para 12 horas de muita música, com os melhores DJs nacionais e internacionais em um ambiente com tecnologia de ponta.</p>
+                    <p>Além das pistas de dança com sistemas de som vàluz de última geração, o evento contará com realidade aumentada, projeções holográficas, área de alimentação gourmet, lounges temáticos e instalações artísticas interativas.</p>
+                    <p>O festival é organizado pelo <strong>Buzeira</strong>, coletivo conhecido por promover os maiores e mais tecnológicos eventos de música eletrônica do país, sempre com produção de alto nível e line-ups exclusivos.</p>
+                    <p>Não perca esta experiência incrível! Garanta já seu ingresso.</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://www.otempo.com.br/adobe/dynamicmedia/deliver/dm-aid--d4587967-13f3-4e8e-8fcb-1dc2e2ec501c/entretenimento-quem-e-buzeira-bruno-alexssander-1708740011.jpg?preferwebp=true&width=1200&quality=90" alt="Buzeira - Organizador do Pomperon Festival">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lineup Section -->
+    <section class="lineup" id="lineup">
+        <div class="container">
+            <h2 class="section-title">Line-up</h2>
+            <div class="artists">
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-info">
+                        <div class="artist-name">KayBlack</div>
+                        <p>Main Stage - 23:00</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-info">
+                        <div class="artist-name">MC Hariel</div>
+                        <p>Main Stage - 20:00</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-info">
+                        <div class="artist-name">Anitta</div>
+                        <p>Beach Stage - 18:00</p>
+                    </div>
+                </div>
+                
+                <div class="artist-card">
+                    <div class="artist-image">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="artist-info">
+                        <div class="artist-name">Racionais MCs</div>
+                        <p>Techno Arena - 00:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tickets Section -->
+    <section class="tickets" id="ingressos">
+        <div class="container">
+            <h2 class="section-title">Ingressos</h2>
+            <div class="ticket-cards">
+                <div class="ticket-card">
+                    <div class="ticket-header">
+                        <div class="ticket-type">PISTA OPEN BAR</div>
+                        <div class="ticket-price">R$ <span>112</span>,00</div>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="ticket-info">
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Tipo:</span>
+                                <span class="ticket-info-value">Unisex</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Lote:</span>
+                                <span class="ticket-info-value">Promocional</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Valor:</span>
+                                <span class="ticket-info-value">R$ 100,00</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Taxa:</span>
+                                <span class="ticket-info-value">R$ 12,00</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="ticket-features">
+                            <li><i class="fas fa-check-circle"></i> Acesso à área pista</li>
+                            <li><i class="fas fa-check-circle"></i> Open bar até 22h</li>
+                            <li><i class="fas fa-check-circle"></i> Área com lounges</li>
+                            <li><i class="fas fa-check-circle"></i> 4 Barras de drinks</li>
+                        </ul>
+                        
+                        <div class="ticket-button">
+                            <a href="https://pay.pagamentossegurogr.store/v7R0gloOe67GVr9" class="btn">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ticket-card">
+                    <div class="ticket-header">
+                        <div class="ticket-type">AREA VIP OPEN BAR</div>
+                        <div class="ticket-price">R$ <span>198</span>,90</div>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="ticket-info">
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Tipo:</span>
+                                <span class="ticket-info-value">Unisex</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Lote:</span>
+                                <span class="ticket-info-value">Promocional</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Valor:</span>
+                                <span class="ticket-info-value">R$ 180,00</span>
+                            </div>
+                            <div class="ticket-info-item">
+                                <span class="ticket-info-label">Taxa:</span>
+                                <span class="ticket-info-value">R$ 21,60</span>
+                            </div>
+                        </div>
+                        
+                        <ul class="ticket-features">
+                            <li><i class="fas fa-check-circle"></i> Acesso à área VIP</li>
+                            <li><i class="fas fa-check-circle"></i> Open bar all night</li>
+                            <li><i class="fas fa-check-circle"></i> Área exclusiva</li>
+                            <li><i class="fas fa-check-circle"></i> Lounge mobiliado</li>
+                            <li><i class="fas fa-check-circle"></i> Vista privilegiada</li>
+                            <li><i class="fas fa-check-circle"></i> Banheiro exclusivo</li>
+                        </ul>
+                        
+                        <div class="ticket-button">
+                            <a href="https://go.disruptybr.com.br/gxtaqgewwy" class="btn">Comprar Agora</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="location" id="localizacao">
+        <div class="container">
+            <h2 class="section-title">Localização</h2>
+            <div class="map-container">
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Estádio Canindé</h3>
+                    <p>Rua São Jorge, 777 - Canindé, São Paulo - SP</p>
+                </div>
+            </div>
+            <div class="address">
+                <p><strong>Data:</strong> 3 de Outubro de 2025 (Sexta-feira)</p>
+                <p><strong>Horário:</strong> 21h às 9h (12 horas de festa)</p>
+                <p><strong>Estacionamento:</strong> Disponível no local (R$ 30,00)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Ticket Urbano</h3>
+                    <p>A plataforma mais tecnológica para compra de ingressos para os melhores eventos.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p><i class="fas fa-phone"></i> (11) 3000-1000</p>
+                    <p><i class="fas fa-envelope"></i> contato@ticketurbano.com.br</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - São Paulo/SP</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Redes Sociais</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Ticket Urbano - Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('October 3, 2025 21:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').innerText = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.getElementById('days').innerText = '00';
+                document.getElementById('hours').innerText = '00';
+                document.getElementById('minutes').innerText = '00';
+                document.getElementById('seconds').innerText = '00';
+            }
+        }
+        
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.ticket-card, .artist-card');
+            
+            elements.forEach(element => {
+                const position = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (position < screenPosition) {
+                    element.style.opacity = 1;
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+        
+        // Initialize elements for animation
+        document.querySelectorAll('.ticket-card, .artist-card').forEach(element => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(20px)';
+            element.style.transition = 'all 0.5s ease-out';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        // Initial check
+        animateOnScroll();
+    </script>
+</body>
+</html>
